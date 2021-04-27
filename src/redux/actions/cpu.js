@@ -1,9 +1,8 @@
-import { DATA } from '../../data'
-import { LOAD_CPU, DELETE_CPU, ADD_CPU } from '../types'
+import { LOAD_CPU, DELETE_CPU, ADD_CPU, CHANGE_CPU } from '../types'
  
-export const loadCpu = () => ({
+export const loadCpu = items => ({
     type: LOAD_CPU,
-    payload: DATA
+    payload: items
 })
 
 export const deleteCpu = id => ({
@@ -13,5 +12,10 @@ export const deleteCpu = id => ({
 
 export const addCpu = obj => ({
     type: ADD_CPU,
+    payload: obj
+})
+
+export const changeCpu = obj => ({
+    type: CHANGE_CPU,
     payload: obj
 })

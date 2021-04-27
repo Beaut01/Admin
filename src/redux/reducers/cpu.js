@@ -1,4 +1,4 @@
-import { LOAD_CPU, DELETE_CPU, ADD_CPU } from '../types'
+import { LOAD_CPU, DELETE_CPU, ADD_CPU, CHANGE_CPU } from '../types'
 
 const initialState = {
     cpu: [],
@@ -21,6 +21,19 @@ export const cpuReducer = (state = initialState, action) => {
         case ADD_CPU:{
             const newCpu = [action.payload, ...state.cpu]
             
+            return{
+                ...state,
+                cpu: newCpu
+            }
+        }
+        case CHANGE_CPU:{
+            const newCpu = state.cpu.map(cpu => {
+                if (cpu.id === action.payload.id) {
+                    cpu = action.payload
+                }
+                return cpu
+            })
+
             return{
                 ...state,
                 cpu: newCpu

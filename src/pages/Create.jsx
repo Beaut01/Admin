@@ -1,9 +1,10 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { addCpu } from '../redux/actions/cpu'
 
 export const CreatePage = () => {
+    const cpu = useSelector(({cpu}) => cpu.cpu)
     const [fields, setFields] = React.useState({
         name: '',
         imageURL: '',
@@ -11,6 +12,7 @@ export const CreatePage = () => {
         quantity: '',
         price: ''
     })
+    
     const dispatch = useDispatch()
     
     const handleAdd = () => {
@@ -24,6 +26,10 @@ export const CreatePage = () => {
         }
         dispatch(addCpu(obj))
     }
+
+    React.useEffect(() => {
+        localStorage.setItem('cpu', JSON.stringify(cpu))
+    },[cpu])
     
     return(
         <div className='container d-flex justify-content-center'>
@@ -86,9 +92,7 @@ export const CreatePage = () => {
                     <NavLink to='/'>
                         <button className='btn btn-danger'>Закрыть</button>
                     </NavLink>
-                    <NavLink to='/'>
-                        <button className='btn btn-primary' onClick={handleAdd}>Добавить</button>
-                    </NavLink>
+                    <button className='btn btn-primary' onClick={handleAdd}>Добавить</button>
                 </div>
             </div>
         </div>

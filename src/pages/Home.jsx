@@ -7,16 +7,22 @@ import { deleteCpu, loadCpu } from '../redux/actions/cpu'
 
 export const Home = () => {
     const dispatch = useDispatch()
-
-    React.useEffect(() => {
-        dispatch(loadCpu())
-    },[dispatch])
     
     const {cpu, loading} = useSelector(state => state.cpu)
+
+    React.useEffect(() => {
+        const saved = JSON.parse(localStorage.getItem('cpu') || '[]')
+        dispatch(loadCpu(saved))
+    },[dispatch])
 
     const handleDeleteCpu = id => {
         dispatch(deleteCpu(id))
     }
+
+    React.useEffect(() => {
+        localStorage.setItem('cpu', JSON.stringify(cpu))
+    },[cpu])
+
     return(
         <React.Fragment>
             <Navbar />
