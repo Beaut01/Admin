@@ -36,7 +36,7 @@ export const ChangePage = () => {
     return(
         <div className='container d-flex justify-content-center'>
             <div className='wrapp'>
-                <h4 className='text-center'>Добавьте товар</h4>
+                <h4 className='text-center'>Измените товар</h4>
                 <hr/>
                 <div className='row mb-3'>
                     <div className='col-5'>
