@@ -1,7 +1,7 @@
 import React from 'react' 
 import { NavLink } from 'react-router-dom'
 
-export const ProductItem = ({id, characteristics, price, name, quantity, imageURL}) => {
+export const ProductItem = ({id, characteristics, price, name, quantity, imageURL, onDelete}) => {
     return(
         <div className='row product'>
             <div className='col'>
@@ -23,7 +23,7 @@ export const ProductItem = ({id, characteristics, price, name, quantity, imageUR
                 </NavLink>
             </div>
             <div className='col-2 d-flex justify-content-center align-items-center'>
-                <button className='btn btn-danger' >Удалить</button>
+                <button className='btn btn-danger' onClick={() => onDelete(id)} >Удалить</button>
             </div>
         </div>
     )

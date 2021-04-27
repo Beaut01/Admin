@@ -1,11 +1,22 @@
 import React from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 
 import { Navbar } from '../components/Navbar'
 import { ProductItem } from '../components/Product/ProductItem'
-import { DATA } from '../data'
+import { deleteCpu, loadCpu } from '../redux/actions/cpu'
 
 export const Home = () => {
-    const cpu = DATA
+    const dispatch = useDispatch()
+
+    React.useEffect(() => {
+        dispatch(loadCpu())
+    },[dispatch])
+    
+    const {cpu, loading} = useSelector(state => state.cpu)
+
+    const handleDeleteCpu = id => {
+        dispatch(deleteCpu(id))
+    }
     return(
         <React.Fragment>
             <Navbar />
@@ -15,6 +26,7 @@ export const Home = () => {
                         <ProductItem
                             key={obj.id}
                             {...obj} 
+                            onDelete={handleDeleteCpu}
                         />
                     )
                 })}
