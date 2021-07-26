@@ -15,7 +15,7 @@ export const ProductItem = ({id, characteristics, price, name, quantity, imageUR
                 <h6>{price} ₽</h6>
             </div>
             <div className='col d-flex align-items-center'>
-                <p className='pt-4'>{quantity} шт</p>
+                <p className='pt-2'>{quantity} шт</p>
             </div>
             <div className='col d-flex justify-content-center align-items-center'>
                 <NavLink to={`/cpu/${id}`}>
